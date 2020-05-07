@@ -50,13 +50,12 @@ DFF
 ######################################################################################################################
 
 
-#### this portion for the column where another nested json file is existed, so to converted this portion as below
+#### this portion for the column where another nested json file is existed, so to convert this portion as below
 
 ss = []
 for i in range(len(df['intended column name where another json file is existed'])):
     a=ast.literal_eval(df['intended column name where another json file is existed'][i]['inside the json the dictionary name under which the data are'])
     ss.append(a)
-ss
 
 fieldnames = set()
 
@@ -90,7 +89,7 @@ for entry in json_data['dictionary_name']['dictionary_name']:        ###If the m
     fieldnames.update(get_leaves(entry).keys())
     
     
-with open('elastic.csv', 'w', newline='',encoding='utf8') as f_output:
+with open('filename.csv', 'w', newline='',encoding='utf8') as f_output:
     csv_output = csv.DictWriter(f_output, fieldnames=sorted(fieldnames))
     csv_output.writeheader()
     csv_output.writerows(get_leaves(entry) for entry in json_data['dictionary_name']['dictionary_name'])
@@ -100,15 +99,13 @@ df = pd.read_csv('csv_file_name.csv',encoding='utf-8')
 
 ##### This portion for the column inside where another json data is existed
 
-xy=ast.literal_eval(df_elastic['column_name_where another json file existed'][0])
-xy
-
+xy=ast.literal_eval(df['column_name_where another json file existed'][0])
 
 for i in range(len(df['column_name_where another json file existed'])):
-    df['column_name_where another json file existed'][i]=ast.literal_eval(df_elastic['column_name_where another json file existed'][i])
+    df['column_name_where another json file existed'][i]=ast.literal_eval(df['column_name_where another json file existed'][i])
 
 p_time = []
-for i in range(len(df_elastic['column_name_where another json file existed'])):
+for i in range(len(df['column_name_where another json file existed'])):
     v = df['column_name_where another json file existed'][i]['the dict name which we needed from the json column']
     p_time.append(v)
  
